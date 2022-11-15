@@ -6,10 +6,12 @@ import React, { useEffect, useState } from 'react';
 const TWITTER_HANDLE = '_buildspace';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const TEST_GIFS = [
+
   'https://i.giphy.com/media/eIG0HfouRQJQr1wBzz/giphy.webp',
   'https://media3.giphy.com/media/L71a8LW2UrKwPaWNYM/giphy.gif?cid=ecf05e47rr9qizx2msjucl1xyvuu47d7kf25tqt2lvo024uo&rid=giphy.gif&ct=g',
   'https://media4.giphy.com/media/AeFmQjHMtEySooOc8K/giphy.gif?cid=ecf05e47qdzhdma2y3ugn32lkgi972z9mpfzocjj6z1ro4ec&rid=giphy.gif&ct=g',
   'https://i.giphy.com/media/PAqjdPkJLDsmBRSYUp/giphy.webp'
+  
 ]
 
 
@@ -46,17 +48,19 @@ const App = () => {
     }
   };
 
-  const sendGif = async () =>{
-    if(inputValue.length>0){
-      console.log("Gif link ",inputValue);
+  const sendGif = async () => {
+    if (inputValue.length > 0) {
+      console.log("Gif link ", inputValue);
+      setGifList([...gifList, inputValue]);
+      setInputValue(' ');
     }
-    else{
+    else {
       console.log("Empty Input !! try again")
     }
   }
 
-  const onInputChange = (event) =>{
-    const {value} = event.target;
+  const onInputChange = (event) => {
+    const { value } = event.target;
     setInputValue(value);
   }
   const renderConnectedContainer = () => (
@@ -103,12 +107,12 @@ const App = () => {
     return () => window.removeEventListener('load', onLoad);
   }, [])
 
-  useEffect(()=>{
-    if(walletAddress){
+  useEffect(() => {
+    if (walletAddress) {
       console.log("Fetching wallet address...");
       setGifList(TEST_GIFS);
     }
-  },[walletAddress]);
+  }, [walletAddress]);
   return (
     <div className="App">
       <div className="container">
